@@ -1,0 +1,68 @@
+version: '3'
+
+volumes:
+  db:
+  html:
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
+
+services:
+  db:
+    image: mariadb
+    container_name: nextcloud-db
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${NEXTCLOUD_DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${NEXTCLOUD_DB_NAME}
+      - MYSQL_PASSWORD=${NEXTCLOUD_DB_PASSWORD}
+      - MYSQL_USER=${NEXTCLOUD_DB_USER}
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+
+  redis:
+    image: redis:alpine
+    container_name: nextcloud-redis
+    restart: always
+
+  app:
+    build: app
+    container_name: nextcloud-app
+    depends_on:
+      - db
+      - redis
+    restart: always
+    volumes:
+      - html:/var/www/html
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_DATABASE=${NEXTCLOUD_DB_NAME}
+      - MYSQL_PASSWORD=${NEXTCLOUD_DB_PASSWORD}
+      - MYSQL_USER=${NEXTCLOUD_DB_USER}
+      - VIRTUAL_HOST=${HOST_NEXTCLOUD}
+      - LETSENCRYPT_HOST=${HOST_NEXTCLOUD}
+      - LETSENCRYPT_EMAIL=${SSL_EMAIL}
+
+  collabora:
+    image: collabora/code
+    container_name: nextcloud-collabora
+    depends_on:
+      - app
+    restart: always
+    cap_add:
+      - MKNOD
+    environment:
+      - domain=${COLLABORA_DOMAIN}
+      - username=${COLLABORA_USER}
+      - password=${COLLABORA_PASSWORD}
+      - dictionaries=${COLLABORA_DICTIONARIES}
+      - VIRTUAL_HOST=${HOST_COLLABORA}
+      - VIRTUAL_PORT=9980
+      - VIRTUAL_PROTO=https
+      - LETSENCRYPT_HOST=${HOST_COLLABORA}
+      - LETSENCRYPT_EMAIL=${SSL_EMAIL}
+    expose:
+      - 9980

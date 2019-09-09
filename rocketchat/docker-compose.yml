@@ -1,0 +1,49 @@
+version: '3'
+
+volumes:
+  db:
+  dump:
+  uploads:
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
+
+services:
+  app:
+    image: rocket.chat:latest
+    container_name: rocketchat-app
+    depends_on:
+      - db
+    restart: unless-stopped
+    volumes:
+      - uploads:/app/uploads
+    environment:
+      - PORT=3000
+      - ROOT_URL=https://${HOST_ROCKETCHAT}
+      - MONGO_URL=mongodb://db:27017/rocketchat
+      - MONGO_OPLOG_URL=mongodb://db:27017/local
+      - Accounts_UseDNSDomainCheck=True
+      - VIRTUAL_HOST=${HOST_ROCKETCHAT}
+      - LETSENCRYPT_HOST=${HOST_ROCKETCHAT}
+      - LETSENCRYPT_EMAIL=${SSL_EMAIL}
+    ports:
+      - 3000:3000
+    command: bash -c 'for i in `seq 1 30`; do node main.js && s=$$? && break || s=$$?; echo "Tried $$i times. Waiting 5 secs..."; sleep 5; done; (exit $$s)'
+
+  db:
+    image: mongo
+    container_name: rocketchat-db
+    restart: unless-stopped
+    volumes:
+     - db:/data/db
+     - dump:/dump
+    command: mongod --replSet rs0
+
+  db-init-replica:
+    image: mongo
+    container_name: rocketchat-db-init-replica
+    depends_on:
+      - db
+    command: 'bash -c "for i in `seq 1 30`; do mongo db/rocketchat --eval \"rs.initiate({ _id: ''rs0'', members: [ { _id: 0, host: ''db:27017'' } ]})\" && s=$$? && break || s=$$?; echo \"Tried $$i times. Waiting 5 secs...\"; sleep 5; done; (exit $$s)"'
