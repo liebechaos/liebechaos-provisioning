@@ -8,17 +8,18 @@ RUN chmod +x /tini
 RUN mkdir /home/node/.npm-global ; \
     chown -R node:node /home/node/
 
-RUN mkdir /home/node/.ssb
-COPY config /home/node/.ssb/config
-
 ENV PATH=/home/node/.npm-global/bin:$PATH
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 
 USER node
 
-RUN npm install -g ssb-server@14.1.7
+ENV EXTERNAL=${HOST_SSB_PUB}
 
-EXPOSE 3002
+RUN mkdir /home/node/.ssb
+COPY make-config.sh .
+RUN ./make-config.sh
+
+RUN npm install -g ssb-server@14.1.7
 
 HEALTHCHECK --interval=30s --timeout=30s --start-period=10s --retries=10 \
   CMD ssb-server whoami || exit 1

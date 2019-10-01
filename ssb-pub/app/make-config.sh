@@ -1,3 +1,6 @@
+#!/bin/bash
+
+cat > /home/node/.ssb/config <<EOF
 {
   "connections": {
     "incoming": {
@@ -5,9 +8,9 @@
         {
           "scope": "public",
           "host": "0.0.0.0",
-          "external": ["${HOST_SSB_PUB}"],
+          "external": ["${EXTERNAL}"],
           "transform": "shs",
-          "port": 3002
+          "port": 8008
         }
       ]
     },
@@ -20,3 +23,4 @@
     }
   }
 }
+EOF
