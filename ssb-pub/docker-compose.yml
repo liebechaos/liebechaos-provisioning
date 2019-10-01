@@ -10,15 +10,13 @@ networks:
 
 services:
   app:
-    image: ahdinosaur/ssb-pub:latest
+    build: app
     container_name: ssb-pub
     restart: unless-stopped
     volumes:
       - data:/home/node/.ssb
-      - ./config:/home/node/.ssb/config
     environment:
       - VIRTUAL_HOST=${HOST_SSB_PUB}
+      - VIRTUAL_PORT=${PORT_SSB_PUB}
       - LETSENCRYPT_HOST=${HOST_SSB_PUB}
       - LETSENCRYPT_EMAIL=${SSL_EMAIL}
-    ports:
-      - 3002:3002
