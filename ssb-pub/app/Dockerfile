@@ -13,11 +13,8 @@ ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 
 USER node
 
-ENV EXTERNAL=${HOST_SSB_PUB}
-
 RUN mkdir /home/node/.ssb
-COPY make-config.sh .
-RUN ./make-config.sh
+COPY config /home/node/.ssb/config
 
 RUN npm install -g ssb-server@14.1.7
 

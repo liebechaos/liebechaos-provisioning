@@ -1,6 +1,3 @@
-#!/bin/bash
-
-cat > /home/node/.ssb/config <<EOF
 {
   "connections": {
     "incoming": {
@@ -8,7 +5,7 @@ cat > /home/node/.ssb/config <<EOF
         {
           "scope": "public",
           "host": "0.0.0.0",
-          "external": ["${EXTERNAL}"],
+          "external": ["pub.liebechaos.org"],
           "transform": "shs",
           "port": 8008
         }
@@ -23,4 +20,3 @@ cat > /home/node/.ssb/config <<EOF
     }
   }
 }
-EOF
