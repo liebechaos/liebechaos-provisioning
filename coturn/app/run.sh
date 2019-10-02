@@ -11,7 +11,6 @@ turnserver -n -v \
   --realm=${TURN_REALM} \
   --fingerprint \
   --no-multicast-peers \
-  --no-loopback-peers \
   --stale-nonce \
   --no-cli --cli-password "unused" \
   --use-auth-secret \
