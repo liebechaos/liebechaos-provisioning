@@ -1,9 +1,17 @@
 version: '3'
 
+networks:
+  default:
+    external:
+      name: nginx-proxy
+
 services:
   app:
     build: app
     container_name: coturn
     restart: always
     env_file: '.env'
-    network_mode: 'host'
+    environment:
+      - VIRTUAL_HOST=${HOST_COTURN}
+      - LETSENCRYPT_HOST=${HOST_COTURN}
+      - LETSENCRYPT_EMAIL=${SSL_EMAIL}
