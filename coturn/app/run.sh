@@ -10,6 +10,8 @@ turnserver -n -v \
   --server-name "${TURN_SERVER_NAME}" \
   --realm=${TURN_REALM} \
   --fingerprint \
+  --bps-capacity=0 \
+  --total-quota=100 \
   --no-multicast-peers \
   --stale-nonce \
   --no-cli --cli-password "unused" \
