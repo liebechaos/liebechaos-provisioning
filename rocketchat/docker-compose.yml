@@ -28,8 +28,6 @@ services:
       - VIRTUAL_HOST=${HOST_ROCKETCHAT}
       - LETSENCRYPT_HOST=${HOST_ROCKETCHAT}
       - LETSENCRYPT_EMAIL=${SSL_EMAIL}
-    ports:
-      - 3000:3000
     command: bash -c 'for i in `seq 1 30`; do node main.js && s=$$? && break || s=$$?; echo "Tried $$i times. Waiting 5 secs..."; sleep 5; done; (exit $$s)'
 
   db:
