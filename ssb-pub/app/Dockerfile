@@ -15,7 +15,7 @@ USER node
 
 RUN mkdir /home/node/.ssb
 
-cat > /home/node/.ssb/config <<EOF
+RUN cat > /home/node/.ssb/config <<EOF
 {
   "connections": {
     "incoming": {
