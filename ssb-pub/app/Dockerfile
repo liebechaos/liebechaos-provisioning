@@ -14,9 +14,33 @@ ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 USER node
 
 RUN mkdir /home/node/.ssb
-COPY config /home/node/.ssb/config
 
-RUN npm install -g ssb-server@14.1.7
+cat > /home/node/.ssb/config <<EOF
+{
+  "connections": {
+    "incoming": {
+      "net": [
+        {
+          "scope": "public",
+          "host": "0.0.0.0",
+          "external": ["${HOST_SSB_PUB}"],
+          "transform": "shs",
+          "port": 8008
+        }
+      ]
+    },
+    "outgoing": {
+      "net": [
+        {
+          "transform": "shs"
+        }
+      ]
+    }
+  }
+}
+EOF
+
+RUN npm install -g ssb-minimal-pub-server
 
 HEALTHCHECK --interval=30s --timeout=30s --start-period=10s --retries=10 \
   CMD ssb-server whoami || exit 1
