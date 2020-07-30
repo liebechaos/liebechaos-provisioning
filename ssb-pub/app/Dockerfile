@@ -15,7 +15,7 @@ USER node
 
 RUN mkdir /home/node/.ssb
 
-RUN echo "{ \"connections\": { \"incoming\": { \"net\": [ { \"scope\": \"public\", \"host\": \"0.0.0.0\", \"external\": [\"pub.liebechaos.org\"], \"transform\": \"shs\", \"port\": 8008 } ] }, \"outgoing\": { \"net\": [ { \"transform\": \"shs\" } ] } } }" > /home/node/ssb/config
+RUN echo "{ \"connections\": { \"incoming\": { \"net\": [ { \"scope\": \"public\", \"host\": \"0.0.0.0\", \"external\": [\"pub.liebechaos.org\"], \"transform\": \"shs\", \"port\": 8008 } ] }, \"outgoing\": { \"net\": [ { \"transform\": \"shs\" } ] } } }" > /home/node/.ssb/config
 
 RUN npm install -g ssb-minimal-pub-server
 
