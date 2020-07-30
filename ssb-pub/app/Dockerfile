@@ -15,30 +15,7 @@ USER node
 
 RUN mkdir /home/node/.ssb
 
-RUN cat > /home/node/.ssb/config <<EOF
-{
-  "connections": {
-    "incoming": {
-      "net": [
-        {
-          "scope": "public",
-          "host": "0.0.0.0",
-          "external": ["${HOST_SSB_PUB}"],
-          "transform": "shs",
-          "port": 8008
-        }
-      ]
-    },
-    "outgoing": {
-      "net": [
-        {
-          "transform": "shs"
-        }
-      ]
-    }
-  }
-}
-EOF
+RUN echo "{ \"connections\": { \"incoming\": { \"net\": [ { \"scope\": \"public\", \"host\": \"0.0.0.0\", \"external\": [\"pub.liebechaos.org\"], \"transform\": \"shs\", \"port\": 8008 } ] }, \"outgoing\": { \"net\": [ { \"transform\": \"shs\" } ] } } }" > /home/node/ssb/config
 
 RUN npm install -g ssb-minimal-pub-server
 
