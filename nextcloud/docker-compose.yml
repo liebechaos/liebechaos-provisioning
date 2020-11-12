@@ -11,7 +11,7 @@ networks:
 
 services:
   db:
-    image: mariadb
+    image: mariadb:10.5.8
     container_name: nextcloud-db
     restart: always
     volumes:
@@ -24,7 +24,7 @@ services:
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
 
   redis:
-    image: redis:alpine
+    image: redis:6.0.9-alpine
     container_name: nextcloud-redis
     restart: always
 
@@ -47,7 +47,7 @@ services:
       - LETSENCRYPT_EMAIL=${SSL_EMAIL}
 
   collabora:
-    image: collabora/code
+    image: collabora/code:6.4.0.14
     container_name: nextcloud-collabora
     depends_on:
       - app

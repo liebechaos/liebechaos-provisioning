@@ -1,4 +1,4 @@
-FROM node:11
+FROM node:12
 
 USER root
 
@@ -17,7 +17,7 @@ RUN mkdir /home/node/.ssb
 
 RUN echo "{ \"connections\": { \"incoming\": { \"net\": [ { \"scope\": \"public\", \"host\": \"0.0.0.0\", \"external\": [\"pub.liebechaos.org\"], \"transform\": \"shs\", \"port\": 8008 } ] }, \"outgoing\": { \"net\": [ { \"transform\": \"shs\" } ] } } }" > /home/node/.ssb/config
 
-RUN npm install -g ssb-server@16.0.1
+RUN npm install -g ssb-server@15.3.0
 
 HEALTHCHECK --interval=30s --timeout=30s --start-period=10s --retries=10 \
   CMD ssb-server whoami || exit 1

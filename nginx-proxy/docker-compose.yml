@@ -12,7 +12,7 @@ networks:
 
 services:
   app:
-    image: nginx:alpine
+    image: nginx:1.19.4-alpine
     container_name: nginx-proxy-app
     ports:
       - "80:80"
@@ -26,7 +26,7 @@ services:
       - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy=true"
 
   gen:
-    image: jwilder/docker-gen
+    image: jwilder/docker-gen:0.7.0
     container_name: nginx-proxy-gen
     depends_on:
       - app
@@ -40,7 +40,7 @@ services:
     command: -notify-sighup nginx-proxy-app -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
 
   letsencrypt:
-    image: jrcs/letsencrypt-nginx-proxy-companion
+    image: jrcs/letsencrypt-nginx-proxy-companion:v1.13.1
     container_name: nginx-proxy-letsencrypt
     depends_on:
       - app
