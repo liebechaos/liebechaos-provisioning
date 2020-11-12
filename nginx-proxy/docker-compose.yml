@@ -14,6 +14,7 @@ services:
   app:
     image: nginx:1.19.4-alpine
     container_name: nginx-proxy-app
+    restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"
@@ -28,6 +29,7 @@ services:
   gen:
     image: jwilder/docker-gen:0.7.0
     container_name: nginx-proxy-gen
+    restart: unless-stopped
     depends_on:
       - app
     volumes:
@@ -42,6 +44,7 @@ services:
   letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion:v1.13.1
     container_name: nginx-proxy-letsencrypt
+    restart: unless-stopped
     depends_on:
       - app
       - gen
