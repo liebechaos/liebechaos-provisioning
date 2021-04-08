@@ -34,3 +34,5 @@ services:
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db/${POSTGRES_DATABASE}
       - LETSENCRYPT_HOST=${HOST_AQUADOGGO}
       - LETSENCRYPT_EMAIL=${SSL_EMAIL}
+    expose:
+      - 2020
