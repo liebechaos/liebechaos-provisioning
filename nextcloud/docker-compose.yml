@@ -47,7 +47,7 @@ services:
       - LETSENCRYPT_EMAIL=${SSL_EMAIL}
 
   collabora:
-    image: collabora/code:6.4.8.4
+    image: collabora/code:6.4.10.10
     container_name: nextcloud-collabora
     depends_on:
       - app
