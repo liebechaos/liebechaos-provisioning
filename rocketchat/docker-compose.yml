@@ -12,7 +12,7 @@ networks:
 
 services:
   app:
-    image: rocket.chat:3.15.0
+    image: rocket.chat:3.17.1
     container_name: rocketchat-app
     depends_on:
       - db
