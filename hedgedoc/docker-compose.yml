@@ -16,6 +16,8 @@ services:
       - CMD_DB_URL=postgres://${PG_USER}:${PG_PASSWORD}@database:5432/${PG_DBNAME}
       - CMD_DOMAIN=${CMD_DOMAIN}
       - CMD_URL_ADDPORT=true
+      - LETSENCRYPT_HOST=${HOST_HEDGEDOC}
+      - LETSENCRYPT_EMAIL=${SSL_EMAIL}
     volumes:
       - uploads:/hedgedoc/public/uploads
     ports:
