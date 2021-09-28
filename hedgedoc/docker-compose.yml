@@ -1,4 +1,10 @@
 version: "3"
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
+
 services:
   database:
     image: postgres:13.4-alpine
@@ -16,12 +22,13 @@ services:
       - CMD_DB_URL=postgres://${PG_USER}:${PG_PASSWORD}@database:5432/${PG_DBNAME}
       - CMD_DOMAIN=${CMD_DOMAIN}
       - CMD_URL_ADDPORT=true
+      - VIRTUAL_HOST=${HOST_HEDGEDOC}
       - LETSENCRYPT_HOST=${HOST_HEDGEDOC}
       - LETSENCRYPT_EMAIL=${SSL_EMAIL}
     volumes:
       - uploads:/hedgedoc/public/uploads
     ports:
-      - "3000:3000"
+      - "3090:3000"
     restart: always
     depends_on:
       - database
