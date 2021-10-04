@@ -1,5 +1,9 @@
 version: "3"
 
+volumes:
+  database:
+  uploads:
+
 networks:
   default:
     external:
@@ -8,6 +12,7 @@ networks:
 services:
   database:
     image: postgres:13.4-alpine
+    container_name: hedgedoc-db
     environment:
       - POSTGRES_USER=${PG_USER}
       - POSTGRES_PASSWORD=${PG_PASSWORD}
@@ -15,9 +20,10 @@ services:
     volumes:
       - database:/var/lib/postgresql/data
     restart: always
+
   app:
-    # Make sure to use the latest release from https://hedgedoc.org/latest-release
     image: quay.io/hedgedoc/hedgedoc:1.9.0
+    container_name: hedgedoc-app
     environment:
       - CMD_DB_URL=postgres://${PG_USER}:${PG_PASSWORD}@database:5432/${PG_DBNAME}
       - CMD_DOMAIN=${CMD_DOMAIN}
@@ -32,6 +38,3 @@ services:
     restart: always
     depends_on:
       - database
-volumes:
-  database:
-  uploads:
