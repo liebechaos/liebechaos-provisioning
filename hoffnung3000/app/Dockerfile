@@ -9,9 +9,8 @@ RUN apt-get update \
 # Download HOFFNUNG 3000 repository
 RUN git clone https://github.com/adzialocha/hoffnung3000.git /usr/src/app
 
-# Build project
-RUN npm install --ignore-scripts
-RUN npm run build
+# Install and build project
+RUN npm install
 
 # Delete development dependencies required to build app
 RUN npm prune --production
