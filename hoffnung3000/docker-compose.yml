@@ -1,0 +1,35 @@
+version: "3"
+
+volumes:
+  database:
+  uploads:
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
+
+services:
+  database:
+    image: postgres:13.4-alpine
+    container_name: hoffnung3000-db
+    env_file: ".env"
+    volumes:
+      - database:/var/lib/postgresql/data
+    restart: always
+
+  app:
+    build: app
+    container_name: hoffnung3000-app
+    env_file: ".env"
+    depends_on:
+      - database
+    environment:
+      - POSTGRES_HOST=database
+      - LETSENCRYPT_EMAIL=${SSL_EMAIL}
+      - LETSENCRYPT_HOST=${HOST_HOFFNUNG3000}
+      - VIRTUAL_HOST=${HOST_HOFFNUNG3000}
+    volumes:
+      - uploads:/usr/src/app/uploads
+    restart: always
+    command: "npm start"
