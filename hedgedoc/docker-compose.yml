@@ -13,7 +13,8 @@ services:
   database:
     image: postgres:13.4-alpine
     container_name: hedgedoc-db
-    env_file: ".env"
+    env_file:
+      - .env
     volumes:
       - database:/var/lib/postgresql/data
     restart: always
@@ -21,7 +22,8 @@ services:
   app:
     image: quay.io/hedgedoc/hedgedoc:1.9.0
     container_name: hedgedoc-app
-    env_file: ".env"
+    env_file:
+      - .env
     environment:
       - CMD_DB_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}
       - CMD_DOMAIN=${HOST_HEDGEDOC}
