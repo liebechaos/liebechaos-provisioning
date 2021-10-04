@@ -12,9 +12,6 @@ RUN git clone https://github.com/adzialocha/hoffnung3000.git /usr/src/app
 # Install and build project
 RUN npm install
 
-# Delete development dependencies required to build app
-RUN npm prune --production
-
 # Remove unneeded dependencies
 RUN apt-get purge -y --auto-remove build-essential
 
