@@ -9,18 +9,8 @@ RUN apt-get update \
 # Download HOFFNUNG 3000 repository
 RUN git clone https://github.com/adzialocha/hoffnung3000.git /usr/src/app
 
-# Use changes to package.json to force Docker not to use the cache when we
-# change our application's NodeJS dependencies:
-COPY package*.json /tmp/
-RUN cd /tmp && npm install --ignore-scripts
-RUN mkdir -p /usr/src/app && cp -a /tmp/node_modules /usr/src/app
-
-# From here we load our application's code in, therefore the previous docker
-# "layer" thats been cached will be used if possible
-WORKDIR /usr/src/app
-COPY . .
-
 # Build project
+RUN npm install --ignore-scripts
 RUN npm run build
 
 # Delete development dependencies required to build app
