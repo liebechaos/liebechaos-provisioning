@@ -10,7 +10,7 @@ networks:
       name: nginx-proxy
 
 services:
-  database:
+  hoffnung3000_database:
     image: postgres:13.4-alpine
     container_name: hoffnung3000-db
     env_file:
@@ -20,17 +20,16 @@ services:
       - database:/var/lib/postgresql/data
     restart: always
 
-  app:
+  hoffnung3000_app:
     build: app
     container_name: hoffnung3000-app
     env_file:
       - .env
     depends_on:
-      - database
+      - hoffnung3000_database
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db/${POSTGRES_DATABASE}
-      - POSTGRES_HOST=database
+      - POSTGRES_HOST=hoffnung3000_database
       - LETSENCRYPT_EMAIL=${SSL_EMAIL}
       - LETSENCRYPT_HOST=${HOST_HOFFNUNG3000}
       - VIRTUAL_HOST=${HOST_HOFFNUNG3000}
