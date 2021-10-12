@@ -8,7 +8,7 @@ RUN apt-get update \
 
 # Download HOFFNUNG 3000 repository
 RUN git clone https://github.com/adzialocha/hoffnung3000.git /usr/src/app \
-      && git checkout --quiet 501f86bf261f6c987758673a7382cc14f24cd3dc
+      && git checkout --quiet baa402c46aa35e351e867491e1543cbc7429be75
 
 # Install and build project
 RUN npm install
