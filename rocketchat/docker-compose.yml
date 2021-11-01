@@ -12,7 +12,7 @@ networks:
 
 services:
   app:
-    image: rocket.chat:4.0.0
+    image: rocket.chat:4.1.0
     container_name: rocketchat-app
     depends_on:
       - db
@@ -31,7 +31,7 @@ services:
     command: bash -c 'for i in `seq 1 30`; do node main.js && s=$$? && break || s=$$?; echo "Tried $$i times. Waiting 5 secs..."; sleep 5; done; (exit $$s)'
 
   db:
-    image: mongo:4.4.1
+    image: mongo:4.4.10
     container_name: rocketchat-db
     restart: unless-stopped
     volumes:
@@ -40,7 +40,7 @@ services:
     command: mongod --replSet rs0
 
   db-init-replica:
-    image: mongo:4.4.1
+    image: mongo:4.4.10
     container_name: rocketchat-db-init-replica
     depends_on:
       - db
