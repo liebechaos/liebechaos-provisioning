@@ -20,7 +20,7 @@ services:
       - db:/var/lib/postgresql/data
 
   app:
-    image: p2panda/aquadoggo:v0.1.0
+    image: p2panda/aquadoggo:v0.2.0
     container_name: aquadoggo-app
     depends_on:
       - db
