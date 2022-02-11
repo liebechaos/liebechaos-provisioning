@@ -1,0 +1,17 @@
+version: '3'
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
+
+services:
+  app:
+    image: p2panda/cbor-tool:v0.1.0
+    container_name: cbor-tool
+    restart: always
+    environment:
+      - VIRTUAL_PORT=3000
+      - VIRTUAL_HOST=${HOST_CBOR_TOOL}
+      - LETSENCRYPT_HOST=${HOST_CBOR_TOOL}
+      - LETSENCRYPT_EMAIL=${SSL_EMAIL}
