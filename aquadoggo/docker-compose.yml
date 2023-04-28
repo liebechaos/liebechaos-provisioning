@@ -4,11 +4,6 @@ volumes:
   db:
   data:
 
-networks:
-  default:
-    external:
-      name: nginx-proxy
-
 services:
   db:
     image: postgres:12.2-alpine
@@ -22,17 +17,13 @@ services:
   app:
     image: p2panda/aquadoggo:v0.4.0
     container_name: aquadoggo-app
+    restart: unless-stopped
     depends_on:
       - db
     volumes:
       - data:/home/rust/.local/share/aquadoggo
-    restart: always
     environment:
-      - VIRTUAL_PORT=2020
-      - VIRTUAL_HOST=${HOST_AQUADOGGO}
       - RUST_LOG=aquadoggo=debug
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db/${POSTGRES_DATABASE}
-      - LETSENCRYPT_HOST=${HOST_AQUADOGGO}
-      - LETSENCRYPT_EMAIL=${SSL_EMAIL}
-    expose:
-      - 2020
+    ports:
+      - 2020:2020
