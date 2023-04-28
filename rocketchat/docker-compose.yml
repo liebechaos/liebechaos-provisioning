@@ -20,7 +20,6 @@ services:
       - ROOT_URL=https://wald.liebechaos.org
       - PORT=3000
       - DEPLOY_METHOD=docker
-      - DEPLOY_PLATFORM=${DEPLOY_PLATFORM}
     expose:
       - 3000
 
