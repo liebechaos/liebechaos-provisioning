@@ -15,6 +15,7 @@ services:
       - CMD_DB_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}
       - CMD_DOMAIN=laub.liebechaos.org
       - CMD_PROTOCOL_USESSL=true
+      - CMD_URL_ADDPORT=false
       - CMD_DEFAULT_PERMISSION=limited
       - CMD_ALLOW_EMAIL_REGISTER=false
       - CMD_PORT=4000
