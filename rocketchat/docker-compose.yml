@@ -20,8 +20,8 @@ services:
       - ROOT_URL=https://wald.liebechaos.org
       - PORT=3000
       - DEPLOY_METHOD=docker
-    expose:
-      - 3000
+    ports:
+      - 3000:3000
 
   db:
     image: mongo:5.0.17
