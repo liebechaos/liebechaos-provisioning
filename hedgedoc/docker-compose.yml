@@ -20,17 +20,14 @@ services:
     restart: always
 
   app:
-    image: quay.io/hedgedoc/hedgedoc:1.9.0
+    image: quay.io/hedgedoc/hedgedoc:1.9.7
     container_name: hedgedoc-app
     env_file:
       - .env
     environment:
       - CMD_DB_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}
-      - CMD_DOMAIN=${HOST_HEDGEDOC}
+      - CMD_DOMAIN=laub.liebechaos.org
       - CMD_PROTOCOL_USESSL=true
-      - VIRTUAL_HOST=${HOST_HEDGEDOC}
-      - LETSENCRYPT_HOST=${HOST_HEDGEDOC}
-      - LETSENCRYPT_EMAIL=${SSL_EMAIL}
     volumes:
       - uploads:/hedgedoc/public/uploads
     restart: always
