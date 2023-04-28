@@ -4,11 +4,6 @@ volumes:
   db:
   html:
 
-networks:
-  default:
-    external:
-      name: nginx-proxy
-
 services:
   db:
     image: mariadb:10.5.8
@@ -42,27 +37,5 @@ services:
       - MYSQL_DATABASE=${NEXTCLOUD_DB_NAME}
       - MYSQL_PASSWORD=${NEXTCLOUD_DB_PASSWORD}
       - MYSQL_USER=${NEXTCLOUD_DB_USER}
-      - VIRTUAL_HOST=${HOST_NEXTCLOUD}
-      - LETSENCRYPT_HOST=${HOST_NEXTCLOUD}
-      - LETSENCRYPT_EMAIL=${SSL_EMAIL}
-
-  collabora:
-    image: collabora/code:6.4.10.10
-    container_name: nextcloud-collabora
-    depends_on:
-      - app
-    restart: always
-    cap_add:
-      - MKNOD
-    environment:
-      - domain=${COLLABORA_DOMAIN}
-      - username=${COLLABORA_USER}
-      - password=${COLLABORA_PASSWORD}
-      - dictionaries=${COLLABORA_DICTIONARIES}
-      - VIRTUAL_HOST=${HOST_COLLABORA}
-      - VIRTUAL_PORT=9980
-      - VIRTUAL_PROTO=https
-      - LETSENCRYPT_HOST=${HOST_COLLABORA}
-      - LETSENCRYPT_EMAIL=${SSL_EMAIL}
-    expose:
-      - 9980
+    ports:
+      - 8080:5000
