@@ -4,12 +4,27 @@ volumes:
   database:
   uploads:
 
-networks:
-  default:
-    external:
-      name: nginx-proxy
-
 services:
+  app:
+    image: quay.io/hedgedoc/hedgedoc:1.9.7
+    container_name: hedgedoc-app
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - CMD_DB_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}
+      - CMD_DOMAIN=laub.liebechaos.org
+      - CMD_PROTOCOL_USESSL=true
+      - CMD_DEFAULT_PERMISSION=limited
+      - CMD_ALLOW_EMAIL_REGISTER=false
+      - CMD_PORT=4000
+    volumes:
+      - uploads:/hedgedoc/public/uploads
+    depends_on:
+      - database
+    ports:
+      - 4000:4000
+
   database:
     image: postgres:13.4-alpine
     container_name: hedgedoc-db
@@ -19,17 +34,3 @@ services:
       - database:/var/lib/postgresql/data
     restart: always
 
-  app:
-    image: quay.io/hedgedoc/hedgedoc:1.9.7
-    container_name: hedgedoc-app
-    env_file:
-      - .env
-    environment:
-      - CMD_DB_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}
-      - CMD_DOMAIN=laub.liebechaos.org
-      - CMD_PROTOCOL_USESSL=true
-    volumes:
-      - uploads:/hedgedoc/public/uploads
-    restart: always
-    depends_on:
-      - database
