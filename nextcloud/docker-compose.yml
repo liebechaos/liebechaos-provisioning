@@ -38,4 +38,4 @@ services:
       - MYSQL_PASSWORD=${NEXTCLOUD_DB_PASSWORD}
       - MYSQL_USER=${NEXTCLOUD_DB_USER}
     ports:
-      - 8080:5000
+      - 5000:80
