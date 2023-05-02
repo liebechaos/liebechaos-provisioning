@@ -34,4 +34,3 @@ services:
     volumes:
       - database:/var/lib/postgresql/data
     restart: always
-
