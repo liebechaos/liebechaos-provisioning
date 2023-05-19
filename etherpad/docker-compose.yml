@@ -1,0 +1,32 @@
+version: "3"
+
+volumes:
+  database:
+
+services:
+  app:
+    image: etherpad/etherpad:1.8.18
+    container_name: etherpad-app
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - DB_TYPE=postgres
+      - DB_HOST=database
+      - DB_USER=${POSTGRES_USER}
+      - DB_NAME=${POSTGRES_DB}
+      - DB_PASS=${POSTGRES_PASSWORD}
+      - PORT=9001
+    depends_on:
+      - database
+    ports:
+      - 9001:9001
+
+  database:
+    image: postgres:13.4-alpine
+    container_name: etherpad-db
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - database:/var/lib/postgresql/data
