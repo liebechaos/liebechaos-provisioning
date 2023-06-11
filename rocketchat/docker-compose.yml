@@ -7,7 +7,7 @@ volumes:
 
 services:
   app:
-    image: rocket.chat:6.0.0
+    image: rocket.chat:6.2.0
     container_name: rocketchat-app
     depends_on:
       - db
