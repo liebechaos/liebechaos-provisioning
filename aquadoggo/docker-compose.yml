@@ -8,6 +8,7 @@ services:
   db:
     image: postgres:12.2-alpine
     container_name: aquadoggo-db
+    restart: unless-stopped
     env_file:
       - .env
     volumes:
