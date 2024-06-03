@@ -26,5 +26,6 @@ services:
     environment:
       - RUST_LOG=aquadoggo=debug
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db/${POSTGRES_DATABASE}
+      - RELAY_MODE=true
     ports:
       - 2022:2022/udp
