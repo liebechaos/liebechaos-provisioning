@@ -118,7 +118,7 @@ http_port = 2020
 #
 # When port is taken the node will automatically pick a random, free port.
 #
-quic_port = 2024
+quic_port = 2022
 
 # ﾟ･｡+☆
 # BLOBS
