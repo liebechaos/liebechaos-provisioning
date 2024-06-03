@@ -158,7 +158,7 @@ quic_port = 2022
 
 # mDNS to discover other peers on the local network. Enabled by default.
 #
-mdns = true
+mdns = false
 
 # ﾟ･｡+☆
 # NODES
@@ -244,7 +244,7 @@ relay_addresses = [
 # NOTE: Relays _need_ to be hosted in a way where they can be reached directly,
 # for example with a static IP address through an VPS.
 #
-relay_mode = false
+relay_mode = true
 
 # ﾟ･｡+☆+｡･
 # WORKERS
