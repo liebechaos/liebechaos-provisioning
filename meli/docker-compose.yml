@@ -22,10 +22,11 @@ services:
     depends_on:
       - db
     volumes:
-      - data:/home/rust/.local/share/meli
+      - data:/home/rust/.local/share/aquadoggo
+      - ./config.toml:/home/rust/config.toml
     environment:
       - RUST_LOG=aquadoggo=debug
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db/${POSTGRES_DATABASE}
-      - RELAY_MODE=true
+      - CONFIG=/home/rust/config.toml
     ports:
       - 2022:2022/udp
