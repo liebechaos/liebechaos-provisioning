@@ -29,4 +29,4 @@ services:
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db/${POSTGRES_DATABASE}
       - CONFIG=/home/rust/config.toml
     ports:
-      - 2022:2022/udp
+      - 2022:2024/udp
