@@ -28,3 +28,4 @@ services:
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db/${POSTGRES_DATABASE}
     ports:
       - 2020:2020
+      - 2022:2022/udp
