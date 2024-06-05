@@ -25,7 +25,7 @@ services:
       - data:/home/rust/.local/share/aquadoggo
       - ./config.toml:/home/rust/config.toml
     environment:
-      - RUST_LOG=aquadoggo=debug
+      - LOG_LEVEL=aquadoggo=debug
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db/${POSTGRES_DATABASE}
       - CONFIG=/home/rust/config.toml
     ports:
