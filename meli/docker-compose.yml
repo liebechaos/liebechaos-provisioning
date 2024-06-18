@@ -16,7 +16,7 @@ services:
       - db:/var/lib/postgresql/data
 
   app:
-    image: p2panda/aquadoggo:v0.7.4
+    image: p2panda/aquadoggo:v0.7.3
     container_name: meli-app
     restart: unless-stopped
     depends_on:
@@ -27,6 +27,6 @@ services:
     environment:
       - LOG_LEVEL=aquadoggo=debug
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db/${POSTGRES_DATABASE}
-      - CONFIG=/home/rust/config.toml
+      - BLOBS_BASE_PATH=/home/rust/.local/share/aquadoggo
     ports:
       - 2024:2022/udp
