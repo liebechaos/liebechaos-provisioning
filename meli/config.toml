@@ -150,7 +150,7 @@ blobs_base_path = "/home/rust/.local/share/aquadoggo"
 # When comment out or no path is set, your node will generate an ephemeral
 # private key on every start up and _not_ persist it.
 #
-private_key = "/home/rust/.local/share/aquadoggo/private-key.txt"
+private_key = "/home/rust/private-key.txt"
 
 # ﾟ･｡+☆+｡･ﾟ･｡+☆+
 # LOCAL NETWORKS
