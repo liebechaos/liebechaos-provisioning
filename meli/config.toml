@@ -114,11 +114,11 @@ database_max_connections = 32
 #
 http_port = 2020
 
-# QUIC port for node-node communication and data replication. Defaults to 2022.
+# Port for node-node communication and data replication. Defaults to 2022.
 #
 # When port is taken the node will automatically pick a random, free port.
 #
-quic_port = 2022
+node_port = 2022
 
 # ﾟ･｡+☆
 # BLOBS
@@ -134,7 +134,7 @@ quic_port = 2022
 # database is set to be stored somewhere permamently, you should do the same
 # for blob files to not run into data inconsistencies.
 #
-# blobs_base_path = "$HOME/.local/share/aquadoggo/blobs"
+blobs_base_path = "/home/rust/.local/share/aquadoggo"
 
 # ﾟ･｡+☆+｡･
 # IDENTITY
@@ -150,7 +150,7 @@ quic_port = 2022
 # When comment out or no path is set, your node will generate an ephemeral
 # private key on every start up and _not_ persist it.
 #
-# private_key = "$HOME/.local/share/aquadoggo/private-key.txt"
+private_key = "/home/rust/private-key.txt"
 
 # ﾟ･｡+☆+｡･ﾟ･｡+☆+
 # LOCAL NETWORKS
@@ -256,4 +256,4 @@ relay_mode = true
 # Use a higher number if you run your node on a powerful machine with many CPU
 # cores. Lower number for low-energy devices with limited resources.
 #
-worker_pool_size = 16
+worker_pool_size = 1
