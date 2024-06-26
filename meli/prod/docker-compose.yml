@@ -32,3 +32,4 @@ services:
       - CONFIG=/home/rust/config.toml
     ports:
       - 2026:2022/udp
+      - 2026:2022/tcp
