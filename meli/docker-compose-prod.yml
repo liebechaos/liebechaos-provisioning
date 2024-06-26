@@ -23,10 +23,9 @@ services:
       - db
     volumes:
       - data:/home/rust/.local/share/aquadoggo
-      - ./config-prod.toml:/home/rust/config.toml
+      - ./config.toml:/home/rust/config.toml
     environment:
       - LOG_LEVEL=aquadoggo=debug
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db/${POSTGRES_DATABASE}
-      - BLOBS_BASE_PATH=/home/rust/.local/share/aquadoggo
     ports:
       - 2024:2022/udp
