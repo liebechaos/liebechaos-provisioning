@@ -16,7 +16,7 @@ services:
       - db:/var/lib/postgresql/data
 
   app:
-    image: p2panda/aquadoggo:v0.8.1
+    image: p2panda/aquadoggo:v0.8.0
     container_name: meli-app
     restart: unless-stopped
     depends_on:
