@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  relay:
+    image: n0computer/iroh-relay:v0.26.0
+    container_name: iroh-relay
+    restart: unless-stopped
+    volumes:
+      - ./config.toml:/config.toml
+    ports:
+      - 3340:80
+      - 3478:3478/udp
