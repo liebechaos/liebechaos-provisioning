@@ -9,7 +9,7 @@ services:
       - ./config.toml:/config.toml
     command: -c /config.toml
     environment:
-      - RUST_LOG=info
+      - RUST_LOG=debug
     ports:
       - 3340:80
       - 3478:3478/udp
