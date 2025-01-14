@@ -2,7 +2,7 @@ version: '3'
 
 services:
   relay:
-    image: n0computer/iroh-relay:v0.26.0
+    image: n0computer/iroh-relay:v0.28.2
     container_name: iroh-relay
     restart: unless-stopped
     volumes:
