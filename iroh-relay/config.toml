@@ -1,3 +1,4 @@
 enable_metrics = false
 enable_relay = true
 enable_stun = true
+http_bind_addr = "[::]:3340"

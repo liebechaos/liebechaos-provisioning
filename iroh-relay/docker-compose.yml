@@ -11,5 +11,5 @@ services:
     environment:
       - RUST_LOG=debug
     ports:
-      - 3340:80
+      - 3340:3340
       - 3478:3478/udp
