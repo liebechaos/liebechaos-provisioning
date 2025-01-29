@@ -17,7 +17,7 @@ services:
       - CMD_PROTOCOL_USESSL=true
       - CMD_URL_ADDPORT=false
       - CMD_DEFAULT_PERMISSION=limited
-      - CMD_ALLOW_EMAIL_REGISTER=true
+      - CMD_ALLOW_EMAIL_REGISTER=false
       - CMD_PORT=4000
     volumes:
       - uploads:/hedgedoc/public/uploads
