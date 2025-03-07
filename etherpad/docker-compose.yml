@@ -22,7 +22,6 @@ services:
       - DB_USER=${POSTGRES_USER}
       - DB_NAME=${POSTGRES_DB}
       - DB_PASS=${POSTGRES_PASSWORD}
-      - DEFAULT_PAD_TEXT=" "
       - DISABLE_IP_LOGGING=true
       - TRUST_PROXY=true
       - PORT=9001
