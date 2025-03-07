@@ -2,21 +2,32 @@ version: "3"
 
 volumes:
   database:
+  etherpadvar:
+  plugins:
 
 services:
   app:
-    image: etherpad/etherpad:1.8.18
+    image: etherpad/etherpad:2.2.7
     container_name: etherpad-app
     restart: unless-stopped
     env_file:
       - .env
+    volumes:
+      - plugins:/opt/etherpad-lite/src/plugin_packages
+      - etherpadvar:/opt/etherpad-lite/var
     environment:
+      - NODE_ENV=production
       - DB_TYPE=postgres
       - DB_HOST=database
       - DB_USER=${POSTGRES_USER}
       - DB_NAME=${POSTGRES_DB}
       - DB_PASS=${POSTGRES_PASSWORD}
+      - DEFAULT_PAD_TEXT=" "
+      - DISABLE_IP_LOGGING=true
+      - TRUST_PROXY=true
       - PORT=9001
+      - PAD_OPTIONS_USE_MONOSPACE_FONT=true
+      - SOCKETIO_MAX_HTTP_BUFFER_SIZE=5000000
     depends_on:
       - database
     ports:
