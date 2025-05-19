@@ -5,7 +5,7 @@ volumes:
 
 services:
   aardvark:
-    image: p2panda/bootstrap:v0.1.1
+    image: p2panda/bootstrap:0.1.1
     container_name: aardvark-bootstrap
     restart: unless-stopped
     environment:
