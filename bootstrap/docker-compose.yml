@@ -15,5 +15,5 @@ services:
     volumes:
       - data:/home
     ports:
-      - 2022:2022/udp
-      - 2023:2023/udp
+      - 4040:2022/udp
+      - 4041:2023/udp
