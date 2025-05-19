@@ -1,17 +1,19 @@
 version: '3'
 
 volumes:
-  db:
   data:
 
 services:
   aardvark:
-    image: p2panda/bootstrap:v0.1.0
+    image: p2panda/bootstrap:v0.1.1
     container_name: aardvark-bootstrap
     restart: unless-stopped
     environment:
-      - NETWORK_ID="aardvark <3"
+      - NETWORK_ID=aardvark
       - RELAY_URL=https://wasser.liebechaos.org
+      - DATA_PATH=/home
+    volumes:
+      - data:/home
     ports:
       - 2022:2022/udp
       - 2023:2023/udp
