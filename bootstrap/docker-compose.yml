@@ -9,7 +9,7 @@ services:
     container_name: aardvark-bootstrap
     restart: unless-stopped
     environment:
-      - NETWORK_ID=aardvark
+      - NETWORK_ID=reflection
       - RELAY_URL=https://wasser.liebechaos.org
       - DATA_PATH=/home
     volumes:
