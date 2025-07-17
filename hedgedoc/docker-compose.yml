@@ -6,7 +6,7 @@ volumes:
 
 services:
   app:
-    image: quay.io/hedgedoc/hedgedoc:1.9.7
+    image: quay.io/hedgedoc/hedgedoc:1.10.3
     container_name: hedgedoc-app
     restart: unless-stopped
     env_file:
