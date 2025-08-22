@@ -24,7 +24,7 @@ services:
       - 3000:3000
 
   db:
-    image: mongo:6.0.25
+    image: mongo:7.0.23
     container_name: rocketchat-db
     restart: unless-stopped
     volumes:
