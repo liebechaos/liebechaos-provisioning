@@ -7,7 +7,7 @@ volumes:
 
 services:
   app:
-    image: etherpad/etherpad:2.3.2
+    image: etherpad/etherpad:2.5.3
     container_name: etherpad-app
     restart: unless-stopped
     env_file:
@@ -27,6 +27,7 @@ services:
       - PORT=9001
       - PAD_OPTIONS_USE_MONOSPACE_FONT=true
       - SOCKETIO_MAX_HTTP_BUFFER_SIZE=5000000
+      - ETHERPAD_PLUGINS="ep_markdown"
     depends_on:
       - database
     ports:
