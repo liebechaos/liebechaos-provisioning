@@ -7,7 +7,7 @@ volumes:
 
 services:
   app:
-    image: rocket.chat:7.10.0
+    image: rocket.chat:8.3.0
     container_name: rocketchat-app
     depends_on:
       - db
@@ -24,7 +24,7 @@ services:
       - 3000:3000
 
   db:
-    image: mongo:7.0.23
+    image: mongo:8.0.20
     container_name: rocketchat-db
     restart: unless-stopped
     volumes:
