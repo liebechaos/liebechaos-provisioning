@@ -4,6 +4,13 @@ volumes:
   db:
   html:
 
+networks:
+  default:
+    ipam:
+      config:
+        # pinned so the gateway (nginx on the host, 172.21.0.1) stays stable for trusted_proxies
+        - subnet: 172.21.0.0/16
+
 services:
   db:
     image: mariadb:10.6.28
