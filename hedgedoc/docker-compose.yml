@@ -9,6 +9,11 @@ services:
     image: quay.io/hedgedoc/hedgedoc:1.12.0
     container_name: hedgedoc-app
     restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
     env_file:
       - .env
     environment:
@@ -34,3 +39,8 @@ services:
     volumes:
       - database:/var/lib/postgresql/data
     restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

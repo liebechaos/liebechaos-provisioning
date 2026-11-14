@@ -10,6 +10,11 @@ services:
     image: etherpad/etherpad:2.6.1
     container_name: etherpad-app
     restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
     env_file:
       - .env
     volumes:
@@ -37,6 +42,11 @@ services:
     image: postgres:13.4-alpine
     container_name: etherpad-db
     restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
     env_file:
       - .env
     volumes:

@@ -16,6 +16,11 @@ services:
     image: mariadb:10.11.19
     container_name: nextcloud-db
     restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
     volumes:
       - db:/var/lib/mysql
     environment:
@@ -30,6 +35,11 @@ services:
     image: redis:7.4.12-alpine
     container_name: nextcloud-redis
     restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   app:
     build: app
@@ -38,6 +48,11 @@ services:
       - db
       - redis
     restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
     volumes:
       - html:/var/www/html
     environment:

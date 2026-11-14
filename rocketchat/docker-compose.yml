@@ -12,11 +12,15 @@ services:
     depends_on:
       - db
     restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
     volumes:
       - uploads:/app/uploads
     environment:
       - MONGO_URL=mongodb://db:27017/rocketchat?replicaSet=rs0
-      - MONGO_OPLOG_URL=mongodb://db:27017/local?replicaSet=rs0
       - ROOT_URL=https://wald.liebechaos.org
       - PORT=3000
       - DEPLOY_METHOD=docker
@@ -27,16 +31,12 @@ services:
     image: mongo:8.0.38
     container_name: rocketchat-db
     restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
     volumes:
       - db:/data/db
       - dump:/dump
-    environment:
-      - MONGODB_REPLICA_SET_MODE=primary
-      - MONGODB_REPLICA_SET_NAME=rs0
-      - MONGODB_PORT_NUMBER=27017
-      - MONGODB_INITIAL_PRIMARY_HOST=mongodb
-      - MONGODB_INITIAL_PRIMARY_PORT_NUMBER=27017
-      - MONGODB_ADVERTISED_HOSTNAME=mongodb
-      - MONGODB_ENABLE_JOURNAL=true
-      - ALLOW_EMPTY_PASSWORD=true
     command: mongod --replSet rs0
