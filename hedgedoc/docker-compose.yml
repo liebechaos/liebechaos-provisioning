@@ -2,6 +2,7 @@ version: "3"
 
 volumes:
   database:
+  database17:
   uploads:
 
 services:
@@ -32,12 +33,12 @@ services:
       - 127.0.0.1:4000:4000
 
   database:
-    image: postgres:13.23-alpine
+    image: postgres:17.12-alpine
     container_name: hedgedoc-db
     env_file:
       - .env
     volumes:
-      - database:/var/lib/postgresql/data
+      - database17:/var/lib/postgresql/data
     restart: always
     logging:
       driver: json-file
