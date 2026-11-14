@@ -11,7 +11,7 @@ services:
     container_name: rocketchat-app
     depends_on:
       - db
-    restart: unless-stopped
+    restart: always
     logging:
       driver: json-file
       options:
@@ -30,7 +30,7 @@ services:
   db:
     image: mongo:8.0.38
     container_name: rocketchat-db
-    restart: unless-stopped
+    restart: always
     logging:
       driver: json-file
       options:

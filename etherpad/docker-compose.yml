@@ -9,7 +9,7 @@ services:
   app:
     image: etherpad/etherpad:2.6.1
     container_name: etherpad-app
-    restart: unless-stopped
+    restart: always
     logging:
       driver: json-file
       options:
@@ -41,7 +41,7 @@ services:
   database:
     image: postgres:13.4-alpine
     container_name: etherpad-db
-    restart: unless-stopped
+    restart: always
     logging:
       driver: json-file
       options:
