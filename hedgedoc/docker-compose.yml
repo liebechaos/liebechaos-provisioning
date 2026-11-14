@@ -1,5 +1,4 @@
 volumes:
-  database:
   database17:
   uploads:
 
