@@ -27,7 +27,7 @@ services:
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
 
   redis:
-    image: redis:6.0.20-alpine
+    image: redis:7.4.12-alpine
     container_name: nextcloud-redis
     restart: always
 
