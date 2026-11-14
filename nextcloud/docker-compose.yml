@@ -13,7 +13,7 @@ networks:
 
 services:
   db:
-    image: mariadb:10.6.28
+    image: mariadb:10.11.19
     container_name: nextcloud-db
     restart: always
     volumes:
