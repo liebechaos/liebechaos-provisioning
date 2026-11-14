@@ -31,7 +31,7 @@ services:
     depends_on:
       - database
     ports:
-      - 9001:9001
+      - 127.0.0.1:9001:9001
 
   database:
     image: postgres:13.4-alpine

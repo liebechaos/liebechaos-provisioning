@@ -24,7 +24,7 @@ services:
     depends_on:
       - database
     ports:
-      - 4000:4000
+      - 127.0.0.1:4000:4000
 
   database:
     image: postgres:13.23-alpine
